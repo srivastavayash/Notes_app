@@ -1,32 +1,251 @@
- .container3{
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+/* home{
+    background-color: rgb(255, 246, 246);
+} */
+.head {
+    margin-top: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searchbox {
+    flex: 1;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 25px;
+    padding-right: 12px;
+    border-radius: 12px;
+    width: fit-content;
+    height: 38px;
+    box-sizing: border-box;
+    border: 1px solid rgb(209, 204, 204);
+}
+
+.profile:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(199, 193, 193);
+}
+
+.profile {
+    color: rgb(173, 156, 156);
+}
+
+#search {
+    width: 50%;
+    height: 38px;
+    padding-left: 10px;
+    max-height: 50%;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid rgb(224, 208, 208);
+    border-radius: 10px;
+}
+
+#search::placeholder {
+    color: rgb(190, 177, 177);
+}
+
+#search:focus {
+    box-shadow: 1px 0px 10px rgb(138, 132, 132);
+}
+
+.searchicon {
+    height: 40px;
+}
+
+#profilepic {
+    height: 40px;
+}
+
+.btnlogout{
+    margin-left:2px ;
+    outline: none;
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.btnlogout:hover{
+    transform: scale(1.2);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.SidePanel {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height:100%;
- }
-.container2{
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-}
-.container3 button {
-    background-color: #c52020;
-    border-radius: 10px;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 10%;
-    font-size: medium;
+    margin-left: 4px;
+    padding-right: 8px;
 }
 
-.container3 button:hover {
-    background-color: #f31c1c;
+.side-txt {
+    font-size: xx-large;
+    color: rgb(214, 196, 196);
 }
-.container3 h1,.container3 h2{
-    color: rgba(61, 61, 66, 0.685);
+
+.CreateBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+}
+
+.first {
+    margin-top: 50px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(224, 68, 50, 0.664);
+}
+
+.first:hover{
+    box-shadow: 0px 0px 20px rgba(250, 59, 37, 0.973);
+    transform: scale(1.5);
+}
+
+.second {
+    margin-top: 10px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(98, 219, 28, 0.774);
+}
+
+.second:hover{
+    box-shadow: 0px 0px 20px rgba(26, 226, 92, 0.973);
+    transform: scale(1.5);
+}
+
+.third {
+    margin-top: 10px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(53, 189, 223, 0.74);
+}
+
+.third:hover{
+    box-shadow: 0px 0px 20px rgba(26, 226, 233, 0.973);
+    transform: scale(1.5);
+}
+
+.fourth {
+    margin-top: 10px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(255, 39, 201, 0.767);
+}
+
+.fourth:hover{
+    box-shadow: 0px 0px 20px rgba(211, 37, 188, 0.973);
+    transform: scale(1.5);
+}
+
+.fifth {
+    margin-top: 10px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(173, 43, 248, 0.719);
+}
+
+.fifth:hover{
+    box-shadow: 0px 0px 20px rgba(192, 36, 206, 0.973);
+    transform: scale(1.5);
+}
+
+.sixth {
+    margin-top: 10px;
+    border: 2px solid rgb(207, 188, 188);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgb(63, 61, 61);
+    background-color:rgba(255, 121, 11, 0.774);
+}
+
+.sixth:hover{
+    box-shadow: 0px 0px 20px rgba(224, 113, 23, 0.973);
+    transform: scale(1.5);
+}
+
+.CreateBtn:hover {
+    transform: scale(1.1);
+}
+
+.line {
+    width: 1px;
+    height: 100vh;
+    background-color: rgba(185, 172, 172, 0.829);
+}
+
+.Notes {
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    padding-top: -100rem;
+    width: 100wh;
+    height: 100vh;
+}
+.Notesheading{
+    padding-left: 14px;
+    color: rgba(224, 209, 209, 0.767);
+    margin-top: 0px;
+    font-size: 100px;   
 }
