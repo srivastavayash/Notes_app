@@ -1,15 +1,16 @@
 .Notesbox {
     /* background-color: rgba(212, 115, 212, 0.993); */
     display: flex;
+    position: inherit;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     /* padding-left: 20px; */
     border: 1px solid rgb(224, 208, 208);
     border-radius: 10px;
-    margin: 20px 0px 0px 20px;
-    height: 25%;
+    height: 40%;
     width: 25%;
+    margin: 1% 3% 14px 3%;
     min-width: 150px;
     box-shadow: 1px 0px 10px rgb(138, 132, 132);
     overflow: hidden;
@@ -23,10 +24,27 @@
     width: 100%;
     height: 15%;
     margin-left: 12px;
+    margin-right: 19px;
+    margin-top: 6px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+}
+
+.imgheart {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+}
+
+.imgheart:hover{
+   box-shadow: 0px 0px 10px rgb(221, 94, 115);
 }
 
 #title {
@@ -58,7 +76,7 @@
 
 #textbox {
     width: 90%;
-    height: 55%;
+    height: 60%;
     text-align: start;
     vertical-align: start;
     margin: 4px 0px 8px 0px;
@@ -78,7 +96,9 @@
 
 .footer {
     width: 100%;
+    height: 15%;
     display: flex;
+    margin: 0px 0px 2px 0px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -88,7 +108,7 @@
 .delete {
     width: 40px;
     height: 40px;
-    margin: 0px 8px 4px 8px;
+    margin: 0px 4px 11px 3px;
     display: block;
     position: relative;
     border-radius: 50%;

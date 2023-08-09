@@ -45,7 +45,9 @@ function Home() {
         <div className='line'></div>
         <div className='Notes'>
           <h1 className='Notesheading'>Notes</h1>
-          <Notes color="" />
+          <div className='notesText'>
+            <Notes color="" />
+          </div>
         </div>
       </div>
     </div>
