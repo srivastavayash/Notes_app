@@ -10,6 +10,7 @@ body {
     scrollbar-width: none;
     /* Firefox */
 }
+
 /* home{
     background-color: rgb(255, 246, 246);
 } */
@@ -81,8 +82,8 @@ body {
     height: 40px;
 }
 
-.btnlogout{
-    margin-left:2px ;
+.btnlogout {
+    margin-left: 2px;
     outline: none;
     border: 1px solid red;
     border-radius: 5px;
@@ -91,7 +92,7 @@ body {
     cursor: pointer;
 }
 
-.btnlogout:hover{
+.btnlogout:hover {
     transform: scale(1.2);
 }
 
@@ -137,10 +138,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(224, 68, 50, 0.664);
+    background-color: rgba(224, 68, 50, 0.664);
 }
 
-.first:hover{
+.first:hover {
     box-shadow: 0px 0px 20px rgba(250, 59, 37, 0.973);
     transform: scale(1.5);
 }
@@ -153,10 +154,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(98, 219, 28, 0.774);
+    background-color: rgba(98, 219, 28, 0.774);
 }
 
-.second:hover{
+.second:hover {
     box-shadow: 0px 0px 20px rgba(26, 226, 92, 0.973);
     transform: scale(1.5);
 }
@@ -169,10 +170,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(53, 189, 223, 0.74);
+    background-color: rgba(53, 189, 223, 0.74);
 }
 
-.third:hover{
+.third:hover {
     box-shadow: 0px 0px 20px rgba(26, 226, 233, 0.973);
     transform: scale(1.5);
 }
@@ -185,10 +186,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(255, 39, 201, 0.767);
+    background-color: rgba(255, 39, 201, 0.767);
 }
 
-.fourth:hover{
+.fourth:hover {
     box-shadow: 0px 0px 20px rgba(211, 37, 188, 0.973);
     transform: scale(1.5);
 }
@@ -201,10 +202,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(173, 43, 248, 0.719);
+    background-color: rgba(173, 43, 248, 0.719);
 }
 
-.fifth:hover{
+.fifth:hover {
     box-shadow: 0px 0px 20px rgba(192, 36, 206, 0.973);
     transform: scale(1.5);
 }
@@ -217,10 +218,10 @@ body {
     width: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgb(63, 61, 61);
-    background-color:rgba(255, 121, 11, 0.774);
+    background-color: rgba(255, 121, 11, 0.774);
 }
 
-.sixth:hover{
+.sixth:hover {
     box-shadow: 0px 0px 20px rgba(224, 113, 23, 0.973);
     transform: scale(1.5);
 }
@@ -243,9 +244,10 @@ body {
     width: 100wh;
     height: 100vh;
 }
-.Notesheading{
+
+.Notesheading {
     padding-left: 14px;
     color: rgba(224, 209, 209, 0.767);
-    margin-top: 0px;
-    font-size: 100px;   
+    margin:0px 0px 10px 0px;
+    font-size: 100px;
 }

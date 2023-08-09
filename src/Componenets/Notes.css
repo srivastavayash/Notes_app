@@ -1,0 +1,122 @@
+.Notesbox {
+    /* background-color: rgba(212, 115, 212, 0.993); */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* padding-left: 20px; */
+    border: 1px solid rgb(224, 208, 208);
+    border-radius: 10px;
+    margin: 20px 0px 0px 20px;
+    height: 25%;
+    width: 25%;
+    min-width: 150px;
+    box-shadow: 1px 0px 10px rgb(138, 132, 132);
+    overflow: hidden;
+}
+
+.Notesbox:hover {
+    box-shadow: 2px 2px 20px rgb(138, 122, 122)
+}
+
+.titleArchived {
+    width: 100%;
+    height: 15%;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#title {
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    width: 30%;
+    font-size: larger;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+    /* background-color: rgba(212, 115, 212, 0.993); */
+}
+
+#title::placeholder {
+    color: rgb(190, 177, 177);
+}
+
+.imgi {
+    /* z-index: 2; */
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+    filter: brightness(2.5);
+    filter: drop-shadow(5px 5px 10px rgb(196, 24, 24));
+}
+
+#textbox {
+    width: 90%;
+    height: 55%;
+    text-align: start;
+    vertical-align: start;
+    margin: 4px 0px 8px 0px;
+    font-size: large;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    color: gray;
+    /* background-color: rgba(212, 115, 212, 0.993); */
+    overflow: hidden;
+}
+
+#textbox::placeholder {
+    color: rgb(190, 177, 177);
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modify,
+.delete {
+    width: 40px;
+    height: 40px;
+    margin: 0px 8px 4px 8px;
+    display: block;
+    position: relative;
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-size: 70%;
+    background-color: rgba(253, 255, 253, 0.945);
+    padding: 4px 4px 4px 4px;
+    /* color:rgb(155, 135, 135); */
+    border: none;
+    overflow: hidden;
+}
+
+.imgmod,
+.imgdel {
+    height: 70%;
+    width: 70%;
+}
+
+.delete:hover {
+    background-color: rgb(255, 97, 97);
+    cursor: pointer;
+    color: rgb(214, 206, 206);
+    transform: scale(1.1);
+}
+
+.modify:hover {
+    background-color: rgb(167, 255, 108);
+    cursor: pointer;
+    color: rgb(36, 19, 19);
+    transform: scale(1.1);
+}
