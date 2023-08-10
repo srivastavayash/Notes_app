@@ -3,18 +3,32 @@ import "./Home.css"
 import { search, admin, add } from '../Assets/index';
 import { useUserAuth } from '../Context/UserAuthContext';
 import Notes from './Notes';
+import { heart } from '../Assets/index';
 function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
   const [components, setComponents] = useState([]);
+  const [archi, setArchi] = useState(heart);
   const createComponent = () => {
     setComponents(prevComponents => [...prevComponents, {}]);
   };
 
   const deleteComponent = (index) => {
-    setComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
-    console.log(index);
+    if (archi === heart)
+      setComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
+    else {
+      alert("This Note cann't be deleted as Archived!")
+    }
   };
+
+  const childCallback = (archval) => {
+    setArchi(archval);
+  };
+
+  // const handleColor = () => {
+  //   const classval=document.querySelector
+  // }
+
   const handleLogout = async () => {
     try {
       await logOut()
@@ -56,7 +70,7 @@ function Home() {
           <h1 className='Notesheading'>Notes</h1>
           <div className='notesText'>
             {components.map((_, index) => (
-              <Notes key={index} onDelete={() => deleteComponent(index)} />
+              <Notes key={index} childCallback={childCallback} onDelete={() => deleteComponent(index)} />
             ))}
           </div>
         </div>

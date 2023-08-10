@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Notes.css"
 import { heart, pen, Delete, redHeart } from '../Assets/index'
-function Notes({ onDelete }) {
+function Notes({ childCallback, onDelete }) {
   const [archived, setArchived] = useState(heart);
   const handleClick = () => {
     setArchived(prevstate => prevstate === heart ? redHeart : heart);
   };
+  useEffect(() => {
+    childCallback(archived);
+  });
+
   return (
     <div className='Notesbox'>
       <div className='titleArchived'>
