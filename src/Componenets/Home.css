@@ -231,8 +231,12 @@ body {
 }
 
 .line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 1px;
-    height: 100vh;
+    height: 100vmin;
     background-color: rgba(185, 172, 172, 0.829);
 }
 
@@ -243,7 +247,7 @@ body {
     display: flex;
     padding-top: -100rem;
     width: 100wh;
-    height: 100vh;
+    height: 100%;
 }
 
 .Notesheading {
@@ -260,6 +264,6 @@ body {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
-    height: 100%;
+    height: inherit;
     width: 100%;
 }

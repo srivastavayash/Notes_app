@@ -6,6 +6,15 @@ import Notes from './Notes';
 function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
+  const [components, setComponents] = useState([]);
+  const createComponent = () => {
+    setComponents(prevComponents => [...prevComponents, {}]);
+  };
+
+  const deleteComponent = (index) => {
+    setComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
+    console.log(index);
+  };
   const handleLogout = async () => {
     try {
       await logOut()
@@ -31,7 +40,7 @@ function Home() {
         <div className='SidePanel'>
           <p className='side-txt'>Docker</p>
           <div className='CreateBtn'>
-            <img src={add} alt="Create" />
+            <img src={add} alt="Create" onClick={createComponent} />
           </div>
           <div className='multiple-color'>
             <div className='first'></div>
@@ -46,7 +55,9 @@ function Home() {
         <div className='Notes'>
           <h1 className='Notesheading'>Notes</h1>
           <div className='notesText'>
-            <Notes color="" />
+            {components.map((_, index) => (
+              <Notes key={index} onDelete={() => deleteComponent(index)} />
+            ))}
           </div>
         </div>
       </div>

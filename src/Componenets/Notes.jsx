@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Notes.css"
 import { heart, pen, Delete, redHeart } from '../Assets/index'
-function Notes(props) {
+function Notes({ onDelete }) {
   const [archived, setArchived] = useState(heart);
   const handleClick = () => {
     setArchived(prevstate => prevstate === heart ? redHeart : heart);
@@ -16,7 +16,7 @@ function Notes(props) {
       <textarea name="Notes" id='textbox' spellCheck="false" placeholder='Enter Your Notes' cols="20" rows="2" wrap='soft'></textarea>
       <div className='footer'>
         <button className='modify'><img src={pen} alt="modify" className='imgmod' /></button>
-        <button className='delete'><img src={Delete} alt="delete" className='imgdel' /></button>
+        <button className='delete'><img src={Delete} alt="delete" className='imgdel' onClick={onDelete} /></button>
       </div>
     </div>
   )
