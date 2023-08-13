@@ -14,24 +14,26 @@ function Home() {
   const [desc, setDesc] = useState();
 
   const createComponent = () => {
-    const newComponent = { id: Date.now(), description: desc};
+    const newComponent = { id: Date.now(), description: desc, archived: heart };
     setComponents((prevComponents) => [...prevComponents, newComponent]);
   };
 
-  const deleteComponent = (id) => {
-    if (archi === heart) {
-      setComponents((prevComponents) =>
-        prevComponents.filter((comp) => comp.id !== id)
-      );
+  const deleteComponent = (id, archived) => {
+    if (archived === heart) {
+      const updatedComponents = components.filter((comp) => comp.id !== id);
+      setComponents(updatedComponents);
     } else {
       alert("This Note can't be deleted as Protected ♥!");
     }
   };
 
-
-  const childCallback = (idcheck, archval) => {
-   setArchi(archval);
+  const childCallback = (id, archval) => {
+    const updatedComponents = components.map((comp) =>
+      comp.id === id ? { ...comp, archived: archval } : comp
+    );
+    setComponents(updatedComponents);
   };
+
 
   const descval = (data) => {
     setDesc(data);
@@ -50,7 +52,7 @@ function Home() {
   }
   return (
     <div className='parent'>
-      {error&&<p>{error}</p>}
+      {error && <p>{error}</p>}
       <header className='head'>
         <div className='searchbox'>
           <img src={search} alt="searchicon" className='searchicon' />
@@ -82,14 +84,15 @@ function Home() {
         <div className='Notes'>
           <h1 className='Notesheading'>Notes</h1>
           <div className='notesText'>
-          {components.map((component) => (
+            {components.map((component) => (
               <Notes
                 key={component.id}
                 id={component.id}
                 data={component.description}
+                archived={component.archived}
                 childCallback={childCallback}
                 descval={descval}
-                onDelete={() => deleteComponent(component.id)}
+                onDelete={() => deleteComponent(component.id, component.archived)}
               />
             ))}
           </div>

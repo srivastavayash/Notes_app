@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import "./Notes.css";
 import { heart, redHeart, pen, Delete } from '../Assets/index';
 
-function Notes({id, childCallback, descval, onDelete }) {
-  const [archived, setArchived] = useState(heart);
+function Notes({ id, archived, childCallback, descval, onDelete }) {
   const [data, setData] = useState("");
 
   const handleClick = () => {
     const newArchived = archived === heart ? redHeart : heart;
-    setArchived(newArchived);
-    childCallback( id,newArchived);
+    childCallback(id, newArchived);
   };
 
   useEffect(() => {
-    childCallback(id,archived);
     descval(data);
-  }, [data, archived,id, descval,childCallback]);
+  }, [data, descval]);
 
   return (
     <div className='Notesbox'>
@@ -53,7 +50,7 @@ function Notes({id, childCallback, descval, onDelete }) {
             alt="delete"
             key={id}
             className='imgdel'
-            onClick={() => onDelete(id)}
+            onClick={() => onDelete(id, archived)}
           />
         </button>
       </div>
