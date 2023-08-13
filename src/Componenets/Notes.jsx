@@ -3,7 +3,7 @@ import "./Notes.css"
 import { heart, pen, Delete, redHeart } from '../Assets/index'
 
 
-function Notes({val, childCallback, onDelete }) {
+function Notes({val, childCallback, descCallback,onDelete }) {
   const [archived, setArchived] = useState(heart);
   const handleClick = () => {
     setArchived(prevstate => prevstate === heart ? redHeart : heart);

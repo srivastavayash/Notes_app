@@ -7,14 +7,14 @@ import { heart } from '../Assets/index';
 function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
-  const [components, setComponents] = useState([{}]); //here an object will be created by default
+  const [components, setComponents] = useState([]); 
   const [archi, setArchi] = useState(heart);
   const createComponent = () => {
     setComponents(prevComponents => [...prevComponents, {}]);
-    console.log(components);
+    
   };
 
-
+  
   const deleteComponent = (index) => {
     if (archi === heart){
       setComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
@@ -74,7 +74,7 @@ function Home() {
           <h1 className='Notesheading'>Notes</h1>
           <div className='notesText'>
             {components.map((_, index) => (
-              <Notes key={index} val={index} childCallback={childCallback} onDelete={() => deleteComponent(index)} /> //have to create object values and fetch them from notes.
+              <Notes key={index} val={index} childCallback={childCallback}  onDelete={() => deleteComponent(index)} /> //have to create object values and fetch them from notes.
             ))}
           </div>
         </div>
