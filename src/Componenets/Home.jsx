@@ -4,30 +4,38 @@ import { search, admin, add } from '../Assets/index';
 import { useUserAuth } from '../Context/UserAuthContext';
 import Notes from './Notes';
 import { heart } from '../Assets/index';
+
+
 function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
-  const [components, setComponents] = useState([]); 
+  const [components, setComponents] = useState([]);
   const [archi, setArchi] = useState(heart);
+  const [desc, setDesc] = useState();
+
   const createComponent = () => {
-    setComponents(prevComponents => [...prevComponents, {}]);
-    
+    const newComponent = { id: Date.now(), description: desc};
+    setComponents((prevComponents) => [...prevComponents, newComponent]);
   };
 
-  
-  const deleteComponent = (index) => {
-    if (archi === heart){
-      setComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
-      console.log(components);}
-    else {
-      alert("This Note cann't be deleted as Archived!")
+  const deleteComponent = (id) => {
+    if (archi === heart) {
+      setComponents((prevComponents) =>
+        prevComponents.filter((comp) => comp.id !== id)
+      );
+    } else {
+      alert("This Note can't be deleted as Protected ♥!");
     }
   };
 
 
-  const childCallback = (archval) => {
-    setArchi(archval);
+  const childCallback = (idcheck, archval) => {
+   setArchi(archval);
   };
+
+  const descval = (data) => {
+    setDesc(data);
+  }
 
   // const handleColor = () => {
   //   const classval=document.querySelector
@@ -42,6 +50,7 @@ function Home() {
   }
   return (
     <div className='parent'>
+      {error&&<p>{error}</p>}
       <header className='head'>
         <div className='searchbox'>
           <img src={search} alt="searchicon" className='searchicon' />
@@ -56,7 +65,7 @@ function Home() {
       </header>
       <div className='main-content'>
         <div className='SidePanel'>
-          <p className='side-txt'>Docker</p>
+          <p className='side-txt'>Docket</p>
           <div className='CreateBtn'>
             <img src={add} alt="Create" onClick={createComponent} />
           </div>
@@ -73,8 +82,15 @@ function Home() {
         <div className='Notes'>
           <h1 className='Notesheading'>Notes</h1>
           <div className='notesText'>
-            {components.map((_, index) => (
-              <Notes key={index} val={index} childCallback={childCallback}  onDelete={() => deleteComponent(index)} /> //have to create object values and fetch them from notes.
+          {components.map((component) => (
+              <Notes
+                key={component.id}
+                id={component.id}
+                data={component.description}
+                childCallback={childCallback}
+                descval={descval}
+                onDelete={() => deleteComponent(component.id)}
+              />
             ))}
           </div>
         </div>

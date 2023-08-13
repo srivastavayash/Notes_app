@@ -1,31 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import "./Notes.css"
-import { heart, pen, Delete, redHeart } from '../Assets/index'
+import React, { useEffect, useState } from 'react';
+import "./Notes.css";
+import { heart, redHeart, pen, Delete } from '../Assets/index';
 
-
-function Notes({val, childCallback, descCallback,onDelete }) {
+function Notes({id, childCallback, descval, onDelete }) {
   const [archived, setArchived] = useState(heart);
+  const [data, setData] = useState("");
+
   const handleClick = () => {
-    setArchived(prevstate => prevstate === heart ? redHeart : heart);
+    const newArchived = archived === heart ? redHeart : heart;
+    setArchived(newArchived);
+    childCallback( id,newArchived);
   };
+
   useEffect(() => {
-    childCallback(archived);
-  });
+    childCallback(id,archived);
+    descval(data);
+  }, [data, archived,id, descval,childCallback]);
 
   return (
     <div className='Notesbox'>
       <div className='titleArchived'>
-        <input type="text" id='title' key={val} placeholder='Title' />
-        <span className='imgheart'> <img src={archived} alt="star" key={val} id='archived' className='imgi' onClick={handleClick} /></span>
+        <input type="text" id='title' placeholder='Title' />
+        <span className='imgheart'>
+          <img
+            src={archived}
+            alt="star"
+            id='archived'
+            className='imgi'
+            onClick={handleClick}
+          />
+        </span>
       </div>
-      
-      <textarea name="Notes" key={val} id='textbox' spellCheck="false" placeholder='Enter Your Notes' cols="20" rows="2" wrap='soft'></textarea>
+
+      <textarea
+        name="Notes"
+        id='textbox'
+        spellCheck="false"
+        placeholder='Enter Your Notes'
+        cols="20"
+        rows="2"
+        wrap='soft'
+        value={data}
+        onChange={(e) => setData(e.target.value)}
+      ></textarea>
       <div className='footer'>
-        <button className='modify'><img src={pen} alt="modify" className='imgmod' /></button>
-        <button className='delete'><img src={Delete} alt="delete" key={val} className='imgdel' onClick={onDelete} /></button>
+        <button className='modify'>
+          <img src={pen} alt="modify" className='imgmod' />
+        </button>
+        <button className='delete'>
+          <img
+            src={Delete}
+            alt="delete"
+            key={id}
+            className='imgdel'
+            onClick={() => onDelete(id)}
+          />
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Notes
+export default Notes;
