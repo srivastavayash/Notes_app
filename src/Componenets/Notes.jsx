@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import "./Notes.css";
 import { heart, redHeart, pen, Delete } from '../Assets/index';
 
-function Notes({ id, archived, childCallback, descval, onDelete }) {
+function Notes({ id, textColor, archived, childCallback, descval, onDelete }) {
   const [data, setData] = useState("");
 
   const handleClick = () => {
     const newArchived = archived === heart ? redHeart : heart;
     childCallback(id, newArchived);
+  };
+
+  const textareaStyle = {
+    color: textColor,
   };
 
   useEffect(() => {
@@ -31,7 +35,8 @@ function Notes({ id, archived, childCallback, descval, onDelete }) {
 
       <textarea
         name="Notes"
-        id='textbox'
+        id="textbox"
+        style={textareaStyle}
         spellCheck="false"
         placeholder='Enter Your Notes'
         cols="20"
@@ -59,3 +64,4 @@ function Notes({ id, archived, childCallback, descval, onDelete }) {
 }
 
 export default Notes;
+

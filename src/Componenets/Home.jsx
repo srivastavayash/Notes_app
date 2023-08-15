@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import "./Home.css"
 import { search, admin, add } from '../Assets/index';
 import { useUserAuth } from '../Context/UserAuthContext';
@@ -10,11 +10,11 @@ function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
   const [components, setComponents] = useState([]);
-  const [archi, setArchi] = useState(heart);
   const [desc, setDesc] = useState();
+  const [textColor, setTextColor] = useState("rgb(190, 177, 177)")
 
   const createComponent = () => {
-    const newComponent = { id: Date.now(), description: desc, archived: heart };
+    const newComponent = { id: Date.now(), description: desc, archived: heart,color:textColor };
     setComponents((prevComponents) => [...prevComponents, newComponent]);
   };
 
@@ -39,9 +39,6 @@ function Home() {
     setDesc(data);
   }
 
-  // const handleColor = () => {
-  //   const classval=document.querySelector
-  // }
 
   const handleLogout = async () => {
     try {
@@ -50,6 +47,11 @@ function Home() {
       setError(err);
     }
   }
+
+  const handleColorchange = (colorval) => {
+    setTextColor(colorval);
+  }
+
   return (
     <div className='parent'>
       {error && <p>{error}</p>}
@@ -72,12 +74,12 @@ function Home() {
             <img src={add} alt="Create" onClick={createComponent} />
           </div>
           <div className='multiple-color'>
-            <div className='first'></div>
-            <div className='second'></div>
-            <div className='third'></div>
-            <div className='fourth'></div>
-            <div className='fifth'></div>
-            <div className='sixth'></div>
+            <div className='first' onClick={()=>handleColorchange("rgba(224, 68, 50, 0.664)")}></div>
+            <div className='second' onClick={()=>handleColorchange("rgba(98, 219, 28, 0.774)")}></div>
+            <div className='third' onClick={()=>handleColorchange("rgba(53, 189, 223, 0.74)")}></div>
+            <div className='fourth' onClick={()=>handleColorchange("rgba(255, 39, 201, 0.767)")}></div>
+            <div className='fifth' onClick={()=>handleColorchange("rgba(173, 43, 248, 0.719)")}></div>
+            <div className='sixth' onClick={()=>handleColorchange("rgba(255, 121, 11, 0.774)")}></div>
           </div>
         </div>
         <div className='line'></div>
@@ -90,6 +92,7 @@ function Home() {
                 id={component.id}
                 data={component.description}
                 archived={component.archived}
+                textColor={textColor}
                 childCallback={childCallback}
                 descval={descval}
                 onDelete={() => deleteComponent(component.id, component.archived)}
