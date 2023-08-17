@@ -123,6 +123,16 @@
     overflow: hidden;
 }
 
+.time {
+    color: rgb(190, 177, 177);
+    box-sizing: border-box;
+    /* border: 1px solid red; */
+    max-width: 62%;
+    width: 100%;
+    max-height: 18px;
+    overflow: hidden;
+}
+
 .imgmod,
 .imgdel {
     height: 70%;

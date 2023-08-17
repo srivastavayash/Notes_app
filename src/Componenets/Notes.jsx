@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "./Notes.css";
 import { heart, redHeart, pen, Delete } from '../Assets/index';
+import { format } from 'date-fns';
 
-function Notes({ id, textColor, archived, childCallback, descval, onDelete }) {
+function Notes({ id, textColor, dateCreated, archived, childCallback, descval, onDelete }) {
   const [data, setData] = useState("");
 
   const handleClick = () => {
@@ -49,6 +50,7 @@ function Notes({ id, textColor, archived, childCallback, descval, onDelete }) {
         <button className='modify'>
           <img src={pen} alt="modify" className='imgmod' />
         </button>
+        <p className='time'>{format(dateCreated, 'MMMM d, yyyy HH:mm a')}</p>
         <button className='delete'>
           <img
             src={Delete}
