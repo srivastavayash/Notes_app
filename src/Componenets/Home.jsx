@@ -1,29 +1,40 @@
-import React, { useState } from 'react'
-import "./Home.css"
+import React, { useState } from 'react';
+import './Home.css';
 import { search, admin, add } from '../Assets/index';
 import { useUserAuth } from '../Context/UserAuthContext';
 import Notes from './Notes';
 import { heart } from '../Assets/index';
-
+import { addNote, deleteNote, updateNote} from "../services/Service" // Import CRUD functions
 
 function Home() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { user, logOut } = useUserAuth();
   const [components, setComponents] = useState([]);
-  const [textColor, setTextColor] = useState("rgb(190, 177, 177)")
-  const createComponent = () => {
-    const newComponent = { id: Date.now(), Title: "", description: "", archived: heart, color: textColor, dateCreated: new Date() };
-    setComponents((prevComponents) => [...prevComponents, newComponent]);
+  const [textColor, setTextColor] = useState('rgb(190, 177, 177)');
+
+  const createComponent = async () => {
+    const newComponent = {
+      Title: '',
+      description: '',
+      archived: heart,
+      color: textColor,
+      dateCreated: new Date(),
+    };
+    const id = await addNote(newComponent);
+    setComponents((prevComponents) => [...prevComponents, { ...newComponent, id }]);
   };
 
-  const deleteComponent = (id, archived) => {
+  const deleteComponent = async (id, archived) => {
     if (archived === heart) {
+      await deleteNote(id);
       const updatedComponents = components.filter((comp) => comp.id !== id);
       setComponents(updatedComponents);
     } else {
       alert("This Note can't be deleted as Protected ♥!");
     }
   };
+ 
+
 
   const childCallback = (id, archval) => {
     const updatedComponents = components.map((comp) =>
@@ -32,28 +43,27 @@ function Home() {
     setComponents(updatedComponents);
   };
 
+  const descval = async (id, data, val) => {
+    await updateNote(id, { Title: val, description: data });
 
-  const descval = (id, data,val) => {
-    // console.log(data);
     const updatedComponents = components.map((comp) =>
-      comp.id === id ? { ...comp, Title: val,description: data } : comp
+      comp.id === id ? { ...comp, Title: val, description: data } : comp
     );
     setComponents(updatedComponents);
-  }
-
-  // console.log(components);
+  };
 
   const handleLogout = async () => {
     try {
-      await logOut()
+      await logOut();
     } catch (err) {
       setError(err);
     }
-  }
+  };
 
   const handleColorchange = (colorval) => {
     setTextColor(colorval);
-  }
+  };
+
 
   return (
     <div className='parent'>
@@ -65,7 +75,7 @@ function Home() {
         </div>
         <div className='profile'>
           {/* <div className='profilecircle'> */}
-          <img src={admin} alt="DP" id='profilepic' /><p>{user.email}</p>
+          <img src={admin} alt="DP" id='profilepic' />{user && user.email && <p>Email: {user.email}</p>}
           <button className='btnlogout' onClick={handleLogout}>Logout</button>
           {/* </div> */}
         </div>
