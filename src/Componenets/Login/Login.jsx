@@ -25,9 +25,9 @@ function Login() {
                 <h2>Login form</h2>
                 {error&&<p className='p2'>{error}</p>}
                 <label htmlFor='Email'>Email:</label><br />
-                <input type="email" id='Email' placeholder='youremail@domain.com' required onChange={(e) => setEmail(e.target.value)}/><br /><br />
+                <input type="email" id='Email' placeholder='youremail@domain.com' autoComplete="username" required onChange={(e) => setEmail(e.target.value)}/><br /><br />
                 <label htmlFor='Pass'>Password:</label><br />
-                <input type="password" id='Pass' placeholder='password' required onChange={(e) => setPassword(e.target.value)}/><br /><br />
+                <input type="password" id='Pass' placeholder='password' autoComplete="current-password" required onChange={(e) => setPassword(e.target.value)}/><br /><br />
                 <div className='btn'><button type='submit'>Sigin</button></div>
                 <h4>Want to Register? &nbsp;
                     <Link to="/Signup">Sign Up</Link>

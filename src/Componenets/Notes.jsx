@@ -4,7 +4,9 @@ import { heart, redHeart, pen, Delete } from '../Assets/index';
 import { format } from 'date-fns';
 
 function Notes({ id, textColor, dateCreated, archived, childCallback, descval, onDelete }) {
+
   const [data, setData] = useState("");
+  const [val, setVal] = useState("");
 
   const handleClick = () => {
     const newArchived = archived === heart ? redHeart : heart;
@@ -15,14 +17,15 @@ function Notes({ id, textColor, dateCreated, archived, childCallback, descval, o
     color: textColor,
   };
 
-  useEffect(() => {
-    descval(data);
-  }, [data, descval]);
+  useEffect(()=>{
+    descval(id, data,val);
+    // eslint-disable-next-line
+  },[data,val])
 
   return (
     <div className='Notesbox'>
       <div className='titleArchived'>
-        <input type="text" id='title' placeholder='Title' />
+        <input type="text" id='title' placeholder='Title' value={val} onChange={(e) => setVal(e.target.value)}/>
         <span className='imgheart'>
           <img
             src={archived}

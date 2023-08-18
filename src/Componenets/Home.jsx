@@ -10,11 +10,9 @@ function Home() {
   const [error, setError] = useState("");
   const { user, logOut } = useUserAuth();
   const [components, setComponents] = useState([]);
-  const [desc, setDesc] = useState();
   const [textColor, setTextColor] = useState("rgb(190, 177, 177)")
-
   const createComponent = () => {
-    const newComponent = { id: Date.now(), description: desc, archived: heart, color: textColor, dateCreated: new Date() };
+    const newComponent = { id: Date.now(), Title: "", description: "", archived: heart, color: textColor, dateCreated: new Date() };
     setComponents((prevComponents) => [...prevComponents, newComponent]);
   };
 
@@ -35,10 +33,15 @@ function Home() {
   };
 
 
-  const descval = (data) => {
-    setDesc(data);
+  const descval = (id, data,val) => {
+    // console.log(data);
+    const updatedComponents = components.map((comp) =>
+      comp.id === id ? { ...comp, Title: val,description: data } : comp
+    );
+    setComponents(updatedComponents);
   }
 
+  // console.log(components);
 
   const handleLogout = async () => {
     try {
@@ -90,7 +93,8 @@ function Home() {
               <Notes
                 key={component.id}
                 id={component.id}
-                data={component.description}
+                description={component.description}
+                Title={component.Title}
                 archived={component.archived}
                 textColor={textColor}
                 dateCreated={component.dateCreated}
