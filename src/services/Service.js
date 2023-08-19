@@ -1,29 +1,31 @@
 import { db } from "../Componenets/Firebase";
-import { ref, push, set, update, remove, get, child} from "firebase/database";
+import { ref, push, set, update, remove, get, child } from "firebase/database";
 
 // Fetch user-specific notes
-export const fetchUserNotes = async (uid,user) => {
+export const fetchUserNotes = async (uid, user) => {
   try {
-    if (!user) {  
+    if (!user) {
       console.error("No authenticated user.");
-      return;
+      return [];
     }
-    const noteRef=ref(db);
-    const snapshot = await get(child(noteRef,`users/${uid}/notes`));
-    console.log(snapshot.exists());
+    const noteRef = ref(db);
+    const snapshot = await get(child(noteRef, `users/${uid}/notes`));
+    // console.log(snapshot.exists());
     if (snapshot.exists()) {
       const notesData = snapshot.val();
-      // Process the notesData as needed
-         console.log("User's Notes:", notesData);
-      return notesData;
+      const notesArray = Object.keys(notesData).map(id => ({ id, ...notesData[id] }));
+      // console.log("User's Notes:", notesArray);
+      return notesArray;
     } else {
       console.log("No notes found for the user.");
+      return [];
     }
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error fetching user notes: ", error);
+    return [];
   }
 };
+
 
 // Add a new note
 export const addNote = async (uid, note) => {

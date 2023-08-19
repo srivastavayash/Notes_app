@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './Notes.css';
 import { heart, redHeart, pen, Delete } from '../Assets/index';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { updateNote } from "../services/Service"; // Import updateNote function
 
 function Notes({
   id,
   textColor,
-  dateCreated,
+  // dateCreated,
   archived,
+  uid,
   childCallback,
   onDelete,
   descval,
@@ -20,13 +21,14 @@ function Notes({
 
   const handleClick = async () => {
     const newArchived = archived === heart ? redHeart : heart;
-    await updateNote(id, { archived: newArchived });
+    await updateNote(uid, id, { archived: newArchived });
     childCallback(id, newArchived);
   };
 
   const textareaStyle = {
     color: textColor,
   };
+
 
   useEffect(() => {
     descval(id, data, val);
@@ -79,7 +81,7 @@ function Notes({
         <button className='modify'>
           <img src={pen} alt='modify' className='imgmod' />
         </button>
-        <p className='time'>{format(dateCreated, 'MMMM d, yyyy HH:mm a')}</p>
+        {/* <p className='time'>{Date.now()}</p> */}
         <button className='delete'>
           <img
             src={Delete}
@@ -87,6 +89,7 @@ function Notes({
             key={id}
             className='imgdel'
             onClick={() => onDelete(id, archived)}
+            uid={uid}
           />
         </button>
       </div>

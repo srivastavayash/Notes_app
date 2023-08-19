@@ -19,16 +19,16 @@ function Home() {
       const fetchNotes = async () => {
         try {
           const fetchedComponents = await fetchUserNotes(uid, user);
-          console.log(fetchedComponents);
-          // setComponents(fetchedComponents);
+          // console.log(fetchedComponents);
+          setComponents(fetchedComponents);
         } catch (error) {
           console.error("Error fetching user notes: ", error);
         }
       };
-  
+
       fetchNotes();
     }
-        // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [user]);
 
   const createComponent = async () => {
@@ -37,7 +37,6 @@ function Home() {
       description: '',
       archived: heart,
       color: textColor,
-      dateCreated: new Date(),
     };
     const id = await addNote(uid, newComponent);
     setComponents((prevComponents) => [...prevComponents, { ...newComponent, id }]);
@@ -53,7 +52,8 @@ function Home() {
     }
   };
 
-  const childCallback = (id, archval) => {
+  const childCallback = async (id, archval) => {
+    await updateNote(uid, id, { archived: archval });
     const updatedComponents = components.map((comp) =>
       comp.id === id ? { ...comp, archived: archval } : comp
     );
@@ -91,7 +91,7 @@ function Home() {
         </div>
         <div className='profile'>
           {/* <div className='profilecircle'> */}
-          <img src={admin} alt="DP" id='profilepic' />{user && user.email && <p>Email: {user.email}</p>}
+          <img src={admin} alt="DP" id='profilepic' />{user && user.email && <p>{user.email}</p>}
           <button className='btnlogout' onClick={handleLogout}>Logout</button>
           {/* </div> */}
         </div>
