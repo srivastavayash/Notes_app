@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { search, admin, add } from '../Assets/index';
 import { useUserAuth } from '../Context/UserAuthContext';
 import Notes from './Notes';
 import { heart } from '../Assets/index';
-import { addNote, deleteNote, updateNote} from "../services/Service" // Import CRUD functions
+import { addNote, deleteNote, updateNote, fetchUserNotes } from "../services/Service" // Import CRUD functions
 
 function Home() {
   const [error, setError] = useState('');
   const { user, logOut } = useUserAuth();
   const [components, setComponents] = useState([]);
   const [textColor, setTextColor] = useState('rgb(190, 177, 177)');
+
+
+  const uid = user.uid;
+  useEffect(() => {
+    if (user) {
+      const fetchNotes = async () => {
+        try {
+          const fetchedComponents = await fetchUserNotes(uid, user);
+          console.log(fetchedComponents);
+          // setComponents(fetchedComponents);
+        } catch (error) {
+          console.error("Error fetching user notes: ", error);
+        }
+      };
+  
+      fetchNotes();
+    }
+        // eslint-disable-next-line
+  }, [user]);
 
   const createComponent = async () => {
     const newComponent = {
@@ -20,21 +39,19 @@ function Home() {
       color: textColor,
       dateCreated: new Date(),
     };
-    const id = await addNote(newComponent);
+    const id = await addNote(uid, newComponent);
     setComponents((prevComponents) => [...prevComponents, { ...newComponent, id }]);
   };
 
   const deleteComponent = async (id, archived) => {
     if (archived === heart) {
-      await deleteNote(id);
+      await deleteNote(uid, id);
       const updatedComponents = components.filter((comp) => comp.id !== id);
       setComponents(updatedComponents);
     } else {
       alert("This Note can't be deleted as Protected ♥!");
     }
   };
- 
-
 
   const childCallback = (id, archval) => {
     const updatedComponents = components.map((comp) =>
@@ -44,7 +61,7 @@ function Home() {
   };
 
   const descval = async (id, data, val) => {
-    await updateNote(id, { Title: val, description: data });
+    await updateNote(uid, id, { Title: val, description: data });
 
     const updatedComponents = components.map((comp) =>
       comp.id === id ? { ...comp, Title: val, description: data } : comp
@@ -63,7 +80,6 @@ function Home() {
   const handleColorchange = (colorval) => {
     setTextColor(colorval);
   };
-
 
   return (
     <div className='parent'>

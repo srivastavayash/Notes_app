@@ -1,50 +1,58 @@
 import { db } from "../Componenets/Firebase";
-import { ref, push, set, update, remove } from "firebase/database";
+import { ref, push, set, update, remove, get, child} from "firebase/database";
 
-//fetching data from database
-// export const fetchUserNotes = (userId, onDataUpdate, onError) => {
-//     const notesRef = ref(db, 'notes'); // Replace 'notes' with your reference path
-  
-//     const q = query(notesRef, orderByChild('userId'), equalTo(userId));
-  
-//     const dataRef = onValue(q, onDataUpdate, onError);
-  
-//     return () => {
-//       off(dataRef, 'value', onDataUpdate);
-//     };
-//   };
-//import { ref, push, set, update, remove, query, orderByChild, equalTo, onValue, off } from "firebase/database";
+// Fetch user-specific notes
+export const fetchUserNotes = async (uid,user) => {
+  try {
+    if (!user) {  
+      console.error("No authenticated user.");
+      return;
+    }
+    const noteRef=ref(db);
+    const snapshot = await get(child(noteRef,`users/${uid}/notes`));
+    console.log(snapshot.exists());
+    if (snapshot.exists()) {
+      const notesData = snapshot.val();
+      // Process the notesData as needed
+         console.log("User's Notes:", notesData);
+      return notesData;
+    } else {
+      console.log("No notes found for the user.");
+    }
+  }
+  catch (error) {
+    console.error("Error fetching user notes: ", error);
+  }
+};
 
-  
 // Add a new note
-export const addNote = async (note) => {
-    try {
-      const notesRef = ref(db, "notes");
-      const newNoteRef = push(notesRef);
-      await set(newNoteRef, note);
-      return newNoteRef.key;
-    } catch (error) {
-      console.error("Error adding note: ", error);
-    }
-  };
-  
-  // Update an existing note
-  export const updateNote = async (id, data) => {
-    try {
-      const noteRef = ref(db, `notes/${id}`);
-      await update(noteRef, data);
-    } catch (error) {
-      console.error("Error updating note: ", error);
-    }
-  };
-  
-  // Delete a note
-  export const deleteNote = async (id) => {
-    try {
-      const noteRef = ref(db, `notes/${id}`);
-      await remove(noteRef);
-    } catch (error) {
-      console.error("Error deleting note: ", error);
-    }
-  };
-  
+export const addNote = async (uid, note) => {
+  try {
+    const notesRef = ref(db, `users/${uid}/notes`);
+    const newNoteRef = push(notesRef);
+    await set(newNoteRef, note);
+    return newNoteRef.key;
+  } catch (error) {
+    console.error("Error adding note: ", error);
+  }
+};
+
+// Update an existing note
+export const updateNote = async (uid, id, data) => {
+  try {
+    const noteRef = ref(db, `users/${uid}/notes/${id}`);
+    await update(noteRef, data);
+  } catch (error) {
+    console.error("Error updating note: ", error);
+  }
+};
+
+// Delete a note
+export const deleteNote = async (uid, id) => {
+  try {
+    const noteRef = ref(db, `users/${uid}/notes/${id}`);
+    await remove(noteRef);
+  } catch (error) {
+    console.error("Error deleting note: ", error);
+  }
+};
