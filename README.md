@@ -1,3 +1,7 @@
+
+
+![image](https://github.com/srivastavayash/Notes_app/assets/85108490/b3a30956-e9ba-440b-b5b8-15b6b60a0ec5)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
